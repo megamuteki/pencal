@@ -32,11 +32,6 @@ sudo cp  ./xtcal  $dir
 #pencal.desktop
 sudo cp  ./pencal.desktop  /usr/share/applications/
 
-sudo chown -R $(whoami):$(whoami) $dir
-sudo chmod -R +x $dir
-sudo chown $(whoami):$(whoami) /usr/share/applications/pencal.desktop
-sudo chmod +rx /usr/share/applications/pencal.desktop
-
-
+sudo chmod +x /usr/share/applications/pencal.desktop
 
 exit
