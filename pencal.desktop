@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=PenControl
+Name[jp]=ペンコントロール
+Comment=ペンコントロール
+Exec=bash /opt/pentablet/pencal/penctrl.sh
+Terminal=false
+Type=Application
+Icon=video-display
+StartupNotify=true
+Categories=System;Settings;
