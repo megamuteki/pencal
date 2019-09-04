@@ -10,7 +10,7 @@ Disconnect tablet for multi tablet.
 ./UNINSTALL
 
 # Sample picture
-memo:recognized as wacom. Wacom driver works
+memo:Select from PEN List and Monitor List. 
 ![PenCal](https://raw.githubusercontent.com/megamuteki/images/master/pencal/pencal01.png)
 
 
