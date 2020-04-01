@@ -2,6 +2,7 @@
 This is pentablet calibrator
 You can save six calibration pattern.
 Disconnect tablet for multi tablet.
+This script works display runnining in mirror mode only.
 
 
 # Download
