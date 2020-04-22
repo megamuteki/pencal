@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #COMMON Variable
-opdir=/opt/pentablet/penctrl
+opdir=/opt/pentablet/pencal
 export PATH="$PATH:$opdir"
 
 #-------ペンとモニタのリストを＄HOMEに作成する。----------------
@@ -105,65 +105,14 @@ penid=$(echo $calinfo | sed 's/id=/\n/1;s/^.*\n//' | awk '{print $1}' )
 #--------monidは、monitorのID
 monid=$(echo $calinfo | awk '{print $NF}' )
 
-
-
-#キャリブレーションを実行する部分
-_calibration()
-
-{
-
-deviceid=$1
-
-out=$(xinput_calibrator --device $deviceid)
-
-
-wtot=$(echo $out | sed -n 's/.*max_x=\([0-9+-]*\).*/\1/p')
-htot=$(echo $out | sed -n 's/.*max_y=\([0-9+-]*\).*/\1/p')
-
-
-minx=$(echo $out | sed -n 's/.*MinX\"\s\"\([0-9+-]*\).*/\1/p')
-maxx=$(echo $out | sed -n 's/.*MaxX\"\s\"\([0-9+-]*\).*/\1/p')
-miny=$(echo $out | sed -n 's/.*MinY\"\s\"\([0-9+-]*\).*/\1/p')
-maxy=$(echo $out | sed -n 's/.*MaxY\"\s\"\([0-9+-]*\).*/\1/p')
-
-
-
-
-wtouch=$(bc <<< "$maxx - $minx")
-htouch=$(bc <<< "$maxy - $miny")
-
-
-
-c0=$(bc -l <<< "$wtot / $wtouch")
-c1=$(bc -l <<< "-1*$minx / $wtouch")
-c2=$(bc -l <<< "$htot / $htouch")
-c3=$(bc -l <<< "-1*$miny / $htouch")
-
-tf_matrix="$c0 0 $c1 0 $c2 $c3 0 0 1"
-
-echo $tf_matrix
-
-
-#echo -e "To make this permanent, save the following content \n under '/etc/X11/xorg.conf.d/98-screen-calibration.conf' \n or '/usr/share/X11/xorg.conf.d/98-screen-calibration.conf'"
-#echo "Section \"InputClass\""
-#echo "	Identifier \"calibration\""
-#echo "	MatchProduct \"$device\""
-#echo "	Option \"TransformationMatrix\" \"$tf_matrix\""
-#echo "EndSection"
-
-}
-
-
-
 #-------------以下ケースごとに作業を実施する。----------------
-
 
 
 case  $pensw in
  
      10)
 #         xinput map-to-output $penid $monid
-        _calibration $penid  | tee  $HOME/caldo.txt
+        $opdir/xtcal > $HOME/caldo.txt
         caldofile=$HOME/caldo.txt
         caldolines=()
         while IFS= read -r caldolines; do
@@ -172,11 +121,10 @@ case  $pensw in
         done <"$caldofile"
         caldat=${caldolines[1]}
         
+
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
         bash penctrl.sh
-
          ;;
-
 
      12) 
         caldofile=$HOME/caldo.txt
@@ -241,6 +189,8 @@ case  $pensw in
         xinput enable $penid
         bash penctrl.sh
 		;;
+
+
 
 
      21)
