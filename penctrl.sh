@@ -173,7 +173,7 @@ case  $pensw in
         caldat=${caldolines[1]}
         
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
-        bash penctrl.sh
+        bash $opdir/penctrl.sh
 
          ;;
 
@@ -214,11 +214,11 @@ case  $pensw in
 					case  $addsw in
 					32)
 					echo ${caladd} | tr '|' '\n' |sed -n '$!p' | sed -e 's/^[ ]*//g'  > $HOME/calini.txt
-					bash penctrl.sh
+					bash $opdir/penctrl.sh
 					
 					;;
 					33)
-					bash penctrl.sh
+					bash $opdir/penctrl.sh
 					
 					;;
 					35)
@@ -234,12 +234,12 @@ case  $pensw in
 
      16)
         xinput disable $penid
-        bash penctrl.sh
+        bash $opdir/penctrl.sh
 		;;
 
      18)
         xinput enable $penid
-        bash penctrl.sh
+        bash $opdir/penctrl.sh
 		;;
 
 
@@ -248,7 +248,7 @@ case  $pensw in
         caldat=${callines[1]}
         
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
- 		bash penctrl.sh
+ 		bash $opdir/penctrl.sh
 		exit  0
          ;;
 
@@ -257,7 +257,7 @@ case  $pensw in
        caldat=${callines[2]}
         
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
- 		bash penctrl.sh
+ 		bash $opdir/penctrl.sh
 		exit  0
          ;;
 
@@ -267,7 +267,7 @@ case  $pensw in
        caldat=${callines[3]}
         
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
- 		bash penctrl.sh
+ 		bash $opdir/penctrl.sh
 		exit  0
          ;;
 
@@ -277,7 +277,7 @@ case  $pensw in
         caldat=${callines[4]}
         
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
- 		bash penctrl.sh
+ 		bash $opdir/penctrl.sh
 		exit  0
          ;;
 
@@ -287,7 +287,7 @@ case  $pensw in
        caldat=${callines[5]}
         
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
- 		bash penctrl.sh
+ 		bash $opdir/penctrl.sh
 		exit  0
          ;;
 
@@ -297,7 +297,7 @@ case  $pensw in
        caldat=${callines[6]}
         
         xinput set-prop $penid 'Coordinate Transformation Matrix'   $caldat
- 		bash penctrl.sh
+ 		bash $opdir/penctrl.sh
 		exit  0
          ;;
 
