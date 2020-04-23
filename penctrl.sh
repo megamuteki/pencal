@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #COMMON Variable
-opdir=/opt/pentablet/penctrl
+opdir=/opt/pentablet/pencal
 export PATH="$PATH:$opdir"
 
 #-------ペンとモニタのリストを＄HOMEに作成する。----------------
